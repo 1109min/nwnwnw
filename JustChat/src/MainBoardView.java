@@ -93,7 +93,7 @@ public class MainBoardView extends JFrame{
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
         
-        gbc.weightx = 0.15;
+        gbc.weightx = 0.3;
         gbc.weighty = 1;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -103,14 +103,14 @@ public class MainBoardView extends JFrame{
         //test.add(centerChatScroll);
         //test.add(rightListScroll);
         
-        gbc.weightx = 0.7;
+        gbc.weightx = 0.4;
         gbc.weighty = 1;
         gbc.gridx = 1;
         gbc.gridy = 0;
         mergeCenterPanel.add(centerChatPanel,gbc);
         
         
-        gbc.weightx = 0.15;
+        gbc.weightx = 0.3;
         gbc.weighty = 1;
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -136,6 +136,7 @@ public class MainBoardView extends JFrame{
 		GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
         
+        gbc.ipady = 10;
         gbc.weightx = 2;
         gbc.weighty = 1;
         gbc.gridx = 0;
@@ -143,7 +144,7 @@ public class MainBoardView extends JFrame{
 
 		JPanel topUserInfoLeftPanel = new JPanel(new FlowLayout(0));
         topUserInfoPanel.add(topUserInfoLeftPanel, gbc);
-        topUserInfoLeftPanel.setBackground(colors.transparent);
+        topUserInfoLeftPanel.setBackground(colors.chat_back);
         
         gbc.weightx = 1;
         gbc.weighty = 1;
@@ -152,7 +153,7 @@ public class MainBoardView extends JFrame{
         
 		JPanel topUserInfoCenterPanel = new JPanel(new FlowLayout(2));
 		topUserInfoPanel.add(topUserInfoCenterPanel, gbc);
-		topUserInfoCenterPanel.setBackground(colors.transparent);
+		topUserInfoCenterPanel.setBackground(colors.chat_back);
 
 		gbc.weightx = 1;
         gbc.weighty = 1;
@@ -161,13 +162,13 @@ public class MainBoardView extends JFrame{
         
 		JPanel topUserInfoRightPanel = new JPanel(new FlowLayout(2));
 		topUserInfoPanel.add(topUserInfoRightPanel ,gbc);
-		topUserInfoRightPanel.setBackground(colors.transparent);
+		topUserInfoRightPanel.setBackground(colors.chat_back);
 
-		Image logo = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/image/kakaotalkmain.png"))).getImage();
+		Image logo = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/image/user.png"))).getImage();
         Image logoIcon = logo.getScaledInstance(50,50,Image.SCALE_SMOOTH);
         
         JPanel infoPanel = new JPanel(new GridLayout(1,0));
-        infoPanel.setBackground(colors.transparent);
+        infoPanel.setBackground(colors.chat_back);
         
         JLabel nameDesc = new JLabel("ÀÌ¸§: ");
         nameDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
@@ -205,7 +206,7 @@ public class MainBoardView extends JFrame{
         userIntro.setForeground(Color.black);
         
         JPanel topinfo = new JPanel(new GridLayout(3,4));
-        topinfo.setBackground(colors.transparent);
+        topinfo.setBackground(colors.chat_back);
         topinfo.add(nameDesc);
         topinfo.add(userName);
         topinfo.add(nickDesc);
@@ -232,6 +233,7 @@ public class MainBoardView extends JFrame{
         //Áß°£ºÎºÐ
 		Button_Round changeInfoButton = new Button_Round("Á¤º¸º¯°æ");
 		changeInfoButton.setFont(gainFont);
+		changeInfoButton.setRound(20,20);
 		changeInfoButton.setColor(colors.btn_back, colors.btn_text);
 		changeInfoButton.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         
@@ -244,9 +246,50 @@ public class MainBoardView extends JFrame{
             }
         });
         
+		//Áß°£ºÎºÐ
+		//·Î±×¾Æ¿ô
+				Button_Round logoutButton = new Button_Round("·Î±×¾Æ¿ô");
+				logoutButton.setFont(gainFont);
+				logoutButton.setRound(20,20);
+				logoutButton.setColor(colors.btn_back, colors.btn_text);
+				logoutButton.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		        
+				logoutButton.addActionListener(new ActionListener() {
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		            	
+		                 //·Î±×¾Æ¿ô ÇÑ´Ù.
+		            	//¼­¹ö¿¬°á
+		            	//·Î±×¾Æ¿ô µðºñ¿¡ Àü´Þ
+		        
+		            	//
+		            	dispose();
+		            	new LoginWindow(); //»õ·Î¿î À©µµ¿ì ¿° ¸Â´ÂÁö Àß ¸ð¸£°Ú³×,,, ¤¾¤¾
+		            }
+		        });
+				
+				//È¸¿øÅ»Åð
+				Button_Round outButton = new Button_Round("È¸¿øÅ»Åð");
+				outButton.setFont(gainFont);
+				outButton.setRound(20,20);
+				outButton.setColor(colors.btn_back, colors.btn_text);
+				outButton.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		        
+				outButton.addActionListener(new ActionListener() {
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		            	
+		                 //È¸¿øÅ»Åð ÇÑ´Ù.
+		            	//¼­¹ö¿¬°á
+		            	//È¸¿øÅ»Åð¸¦ µðºñ¿¡ Àü´Þ
+		        
+		            	//
+		            	dispose();
+		            	new LoginWindow(); //»õ·Î¿î À©µµ¿ì ¿° ¸Â´ÂÁö Àß ¸ð¸£°Ú³×,,, ¤¾¤¾
+		            }
+		        });
         
-        
-        JTextField searchField = new JTextField(18);
+        JTextField searchField = new JTextField(19);
         searchField.setBorder(new EmptyBorder(10,10,10,10));
         searchField.setMargin(new Insets(10,10,10,10));
         
@@ -298,8 +341,11 @@ public class MainBoardView extends JFrame{
         topUserInfoLeftPanel.add(new JLabel(new ImageIcon(logoIcon)));
         topUserInfoLeftPanel.add(infoPanel);
         
-        topUserInfoCenterPanel.add(changeInfoButton);
+        //topUserInfoCenterPanel.add(changeInfoButton);
         
+        topUserInfoRightPanel.add(changeInfoButton);
+        topUserInfoRightPanel.add(logoutButton);
+        topUserInfoRightPanel.add(outButton);
 		topUserInfoRightPanel.add(searchField);
 		topUserInfoRightPanel.add(searchButton);
 		searchButton.setAlignmentX(CENTER_ALIGNMENT);
@@ -571,11 +617,18 @@ public class MainBoardView extends JFrame{
 		
 		users(String name, String id, String intro) {
 			
+
+			setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
 			
-			setLayout(new GridLayout(1,2,5,5)); //ÁÂ·Î Á¤·Ä
+			setLayout(new GridBagLayout()); //ÁÂ·Î Á¤·Ä
+			GridBagConstraints gbc = new GridBagConstraints();
+	        gbc.fill = GridBagConstraints.BOTH;
+	       
 			setBackground(colors.chat_other);
-			setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
-			
+			//setBorder(new LineBorder(Color.gray,1));
+			Image logo = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/image/user.png"))).getImage();
+	        Image logoIcon = logo.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	        
 			JLabel nameLabel = new JLabel();
 			nameLabel.setText(name);
 			nameLabel.setBackground(colors.chat_other);
@@ -595,15 +648,36 @@ public class MainBoardView extends JFrame{
 			introLabel.setBackground(colors.chat_other);
 			introLabel.setForeground(Color.gray);
 			introLabel.setOpaque(false);
-			introLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
+			introLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 12));
 			
 			JPanel nameIdPanel = new JPanel(new GridLayout(2,1));
 			nameIdPanel.setBackground(colors.transparent);
 			nameIdPanel.add(nameLabel);
 			nameIdPanel.add(idLabel);
 			
-			add(nameIdPanel);
-			add(introLabel);
+			 gbc.weightx = 2;
+		        gbc.weighty = 1;
+		        gbc.gridx = 0;
+		        gbc.gridy = 0;
+		       
+		        
+	        add(new JLabel(new ImageIcon(logoIcon)),gbc);
+	        
+	        gbc.weightx = 2;
+	        gbc.weighty = 1;
+	        gbc.gridx = 1;
+	        gbc.gridy = 0;
+	       
+	        
+			add(nameIdPanel,gbc);
+			
+			 gbc.weightx = 6;
+		        gbc.weighty = 1;
+		        gbc.gridx = 2;
+		        gbc.gridy = 0;
+		       
+		        
+			add(introLabel,gbc);
 			
 			addMouseListener(mouse);
 			
@@ -670,10 +744,18 @@ public class MainBoardView extends JFrame{
 		Colors colors;
 		
 		chatRooms(String roomId, String[] id, String lastMessage) {
-			setLayout(new GridLayout(2,1,5,5)); //ÁÂ·Î Á¤·Ä
+			setLayout(new GridBagLayout()); //ÁÂ·Î Á¤·Ä
+			GridBagConstraints gbc = new GridBagConstraints();
+	        gbc.fill = GridBagConstraints.BOTH;
+	        
+	       
 			setBackground(colors.chat_other);
 			//setBorder(new LineBorder(Color.gray,1));
-			
+			Image logo = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/image/chat.png"))).getImage();
+	        Image logoIcon = logo.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+	        
+	        
+	        
 			JLabel nameLabel = new JLabel();
 			nameLabel.setText(roomId);
 			nameLabel.setBackground(colors.chat_other);
@@ -695,16 +777,37 @@ public class MainBoardView extends JFrame{
 			introLabel.setBorder(BorderFactory.createEmptyBorder(2, 10, 10, 10));
 
 			introLabel.setOpaque(false);
-			introLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 12));
+			introLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 12));
 			
-			JPanel nameIdPanel = new JPanel(new FlowLayout(0));
+			JPanel nameIdPanel = new JPanel(new GridBagLayout());
+			gbc.fill = GridBagConstraints.BOTH;
+	        
+	        gbc.weightx = 1;
+	        gbc.weighty = 1;
+	        gbc.gridx = 0;
+	        gbc.gridy = 0;
+			
 			nameIdPanel.setBackground(colors.transparent);
-			nameIdPanel.add(nameLabel);
-			nameIdPanel.add(idLabel);
+			nameIdPanel.add(idLabel,gbc);
 			
-			add(nameIdPanel);
-			add(introLabel);
-						
+			gbc.weightx = 1;
+	        gbc.weighty = 0.8;
+	        gbc.gridx = 0;
+	        gbc.gridy = 1;
+			nameIdPanel.add(introLabel,gbc);
+			
+			 gbc.weightx = 0.5;
+		        gbc.weighty = 2;
+		        gbc.gridx = 0;
+		        gbc.gridy = 0;
+		        add(new JLabel(new ImageIcon(logoIcon)), gbc);
+		        
+		    	gbc.weightx = 8;
+		        gbc.weighty = 1;
+		        gbc.gridx = 1;
+		        gbc.gridy = 0;
+				add(nameIdPanel,gbc);
+							
 		}
 
 		
@@ -713,13 +816,83 @@ public class MainBoardView extends JFrame{
 	
 	
 	public void setBottomSide() {
-		BottomSidePanel.setLayout(new FlowLayout());
+		BottomSidePanel.setLayout(new GridLayout(1,5));
+		BottomSidePanel.setBorder(new EmptyBorder(10,10,10,10));
+		String windV="";
+		String temp="";
+		String most="";
+		String windD="";
+		String rain="";
+		
+		JPanel windVPanel = new JPanel();
+		JPanel tempPanel = new JPanel();
+		JPanel mostPanel = new JPanel();
+		JPanel windDPanel = new JPanel();
+		JPanel rainPanel = new JPanel();
+		
+		JLabel windVDesc = new JLabel("Ç³¼Ó");
+		windVDesc.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+		JLabel tempDesc = new JLabel("±â¿Â");
+		tempDesc.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+
+		JLabel mostDesc = new JLabel("½Àµµ");
+		mostDesc.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+		
+		JLabel windDDesc = new JLabel("Ç³Çâ");
+		windDDesc.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+
+		JLabel rainDesc = new JLabel("°­¼ö·®");
+		rainDesc.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+
+
+		JLabel windVLabel = new JLabel(windV+"m/s");
+		windVLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+
+		JLabel tempLabel = new JLabel(temp+"µµ");
+		tempLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+
+		JLabel mostLabel = new JLabel(most+"%");
+		mostLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+
+		JLabel windDLabel = new JLabel(windD);
+		windDLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+
+		JLabel rainLabel = new JLabel("ÇöÀç 1½Ã°£" +rain+"mm");
+		rainLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 15));
+
+		
+		windVPanel.setLayout(new GridLayout(2,1));
+		windVPanel.add(windVDesc);
+		windVPanel.add(windVLabel);
+		
+		tempPanel.setLayout(new GridLayout(2,1));
+		tempPanel.add(tempDesc);
+		tempPanel.add(tempLabel);
+		
+		mostPanel.setLayout(new GridLayout(2,1));
+		mostPanel.add(mostDesc);
+		mostPanel.add(mostLabel);
+		
+		windDPanel.setLayout(new GridLayout(2,1));
+		windDPanel.add(windDDesc);
+		windDPanel.add(windDLabel);
+		
+		rainPanel.setLayout(new GridLayout(2,1));
+		rainPanel.add(rainDesc);
+		rainPanel.add(rainLabel);
 		
 		JLabel test = new JLabel();
 		test.setText("Dddddddddddddddddddddddddd");
 		test.setBackground(colors.background);
 		test.setOpaque(true);
-		BottomSidePanel.add(test);
+		
+		BottomSidePanel.add(windVPanel);
+		BottomSidePanel.add(tempPanel);
+		BottomSidePanel.add(mostPanel);
+		BottomSidePanel.add(windDPanel);
+		BottomSidePanel.add(rainPanel);
+
+
 		
 	}
 	

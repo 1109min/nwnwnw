@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class modifyInfo extends JFrame{
 	
@@ -36,9 +37,9 @@ public class modifyInfo extends JFrame{
         
         setLocationRelativeTo(null);
         setVisible(true);
-        setSize(550, 300);
+        setSize(700, 400);
         
-        con.setBackground(colors.light_gray);
+        con.setBackground(colors.chat_back);
         con.setLayout(new GridBagLayout());
         
         GridBagConstraints gbc = new GridBagConstraints();
@@ -49,7 +50,7 @@ public class modifyInfo extends JFrame{
         gbc.gridx = 0;
         gbc.gridy = 0;
         
-		JPanel infoPanel = new JPanel(new GridLayout(1,0));
+		JPanel infoPanel = new JPanel(new GridBagLayout());
         infoPanel.setBackground(colors.transparent);
         
         JLabel nameDesc = new JLabel("ÀÌ¸§: ");
@@ -59,9 +60,12 @@ public class modifyInfo extends JFrame{
         userName.setText(this.name);
         userName.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userName.setForeground(Color.black);
+        userName.setBorder(new EmptyBorder(10,10,10,10));
+
         JPanel nameP = new JPanel();
         nameP.add(nameDesc);
         nameP.add(userName);
+        nameP.setBackground(colors.chat_back);
 
         JLabel nickDesc = new JLabel("´Ð³×ÀÓ: ");
         nickDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
@@ -70,10 +74,13 @@ public class modifyInfo extends JFrame{
         userNick.setText(this.nickName);
         userNick.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userNick.setForeground(Color.black);
+        userNick.setBorder(new EmptyBorder(10,10,10,10));
+
         JPanel nickP = new JPanel();
         nickP.add(nickDesc);
         nickP.add(userNick);
-        
+        nickP.setBackground(colors.chat_back);
+
         JLabel idDesc = new JLabel("¾ÆÀÌµð: ");
         idDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         idDesc.setForeground(Color.black); 
@@ -81,10 +88,13 @@ public class modifyInfo extends JFrame{
         userId.setText(this.id);
         userId.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userId.setForeground(Color.black);
+        userId.setBorder(new EmptyBorder(10,10,10,10));
+
         JPanel idP = new JPanel();
         idP.add(idDesc);
         idP.add(userId);
-        
+        idP.setBackground(colors.chat_back);
+
         JLabel countDesc = new JLabel("·Î±×ÀÎ È½¼ö: ");
         countDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         countDesc.setForeground(Color.black);
@@ -92,10 +102,13 @@ public class modifyInfo extends JFrame{
         loginCount.setText(this.count);
         loginCount.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         loginCount.setForeground(Color.black);
+        loginCount.setBorder(new EmptyBorder(10,10,10,10));
+
         JPanel countP = new JPanel();
         countP.add(countDesc);
         countP.add(loginCount);
-        
+        countP.setBackground(colors.chat_back);
+
         JLabel introDesc = new JLabel("¿À´ÃÀÇ ÇÑ¸¶µð: ");
         introDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         introDesc.setForeground(Color.black);
@@ -103,10 +116,13 @@ public class modifyInfo extends JFrame{
         userIntro.setText(this.word);
         userIntro.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userIntro.setForeground(Color.black);
+        userIntro.setBorder(new EmptyBorder(10,10,10,10));
+
         JPanel introP = new JPanel();
         introP.add(introDesc);
         introP.add(userIntro);
-        
+        introP.setBackground(colors.chat_back);
+
         JLabel emailDesc = new JLabel("Email: ");
         emailDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         emailDesc.setForeground(Color.black);
@@ -114,10 +130,13 @@ public class modifyInfo extends JFrame{
         userEmail.setText(this.email);        
         userEmail.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userEmail.setForeground(Color.black);
+        userEmail.setBorder(new EmptyBorder(10,10,10,10));
+
         JPanel emailP = new JPanel();
         emailP.add(emailDesc);
         emailP.add(userEmail);
-        
+        emailP.setBackground(colors.chat_back);
+
         JLabel birthDesc = new JLabel("»ýÀÏ: ");
         birthDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         birthDesc.setForeground(Color.black);
@@ -125,10 +144,13 @@ public class modifyInfo extends JFrame{
         userBirth.setText(this.birth);
         userBirth.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userBirth.setForeground(Color.black);
+        userBirth.setBorder(new EmptyBorder(10,10,10,10));
+
         JPanel birthP = new JPanel();
         birthP.add(birthDesc);
         birthP.add(userBirth);
-        
+        birthP.setBackground(colors.chat_back);
+
         JLabel phoneDesc = new JLabel("ÀüÈ­¹øÈ£: ");
         phoneDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         phoneDesc.setForeground(Color.black);
@@ -136,10 +158,13 @@ public class modifyInfo extends JFrame{
         userPhone.setText(this.phone);
         userPhone.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userPhone.setForeground(Color.black);
+        userPhone.setBorder(new EmptyBorder(10,10,10,10));
+
         JPanel phoneP = new JPanel();
         phoneP.add(phoneDesc);
         phoneP.add(userPhone);
-        
+        phoneP.setBackground(colors.chat_back);
+
         JLabel addressDesc = new JLabel("ÁÖ¼Ò: ");
         addressDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         addressDesc.setForeground(Color.black);
@@ -147,28 +172,62 @@ public class modifyInfo extends JFrame{
         userAddress.setText(this.address);
         userAddress.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userAddress.setForeground(Color.black);
+        userAddress.setBorder(new EmptyBorder(10,10,10,10));
+
         JPanel addressP = new JPanel();
         addressP.add(addressDesc);
         addressP.add(userAddress);
-        
-        JPanel topinfo = new JPanel(new GridLayout(5,2));
+        addressP.setBackground(colors.chat_back);
+
+        JPanel topinfo = new JPanel(new GridBagLayout());
         topinfo.setBackground(colors.transparent);
         
-        topinfo.add(nameP);
-        topinfo.add(nickP);
-        topinfo.add(idP);
-        topinfo.add(emailP);
-        topinfo.add(birthP);
-        topinfo.add(phoneP);
-        topinfo.add(addressP);
-        topinfo.add(countP);
-        topinfo.add(introP);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        topinfo.add(nameP,gbc);
         
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        topinfo.add(nickP,gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        topinfo.add(idP,gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        topinfo.add(emailP,gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        topinfo.add(birthP,gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        topinfo.add(phoneP,gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        topinfo.add(addressP,gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        topinfo.add(countP,gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        topinfo.add(introP,gbc);
+        
+        gbc.fill = GridBagConstraints.NONE;
+
         Button_Round modifyButton = new Button_Round("Á¤º¸ º¯°æ");
         modifyButton.setColor(colors.btn_back,colors.btn_text);
         modifyButton.setRound(20, 20);
+        modifyButton.setBorder(new EmptyBorder(0,10,10,10));
         modifyButton.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 18));
         
+        gbc.gridx = 1;
+        gbc.gridy = 4;
         topinfo.add(modifyButton);
 
 //        topinfo.add(nameDesc);
@@ -197,8 +256,14 @@ public class modifyInfo extends JFrame{
 //        
 //        topinfo.add(introDesc);
 //        topinfo.add(userIntro);
-		
-        infoPanel.add(topinfo);
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        topinfo.setBackground(colors.chat_back);
+        infoPanel.setBackground(colors.chat_back);
+        infoPanel.setBorder(new EmptyBorder(10,10,10,10));
+
+        infoPanel.add(topinfo,gbc);
         add(infoPanel,gbc);
 		
 	}

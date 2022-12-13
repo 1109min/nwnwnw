@@ -27,7 +27,7 @@ public class PwFinder extends JFrame {
             inputPanel.setBorder(BorderFactory.createEmptyBorder(50,50,0,50));
             inputPanel.setBackground(colors.background);
 
-            JLabel inputDesc = new JLabel("비밀번호 찾기");
+            JLabel inputDesc = new JLabel("비밀번호 변경");
             inputDesc.setHorizontalAlignment(JLabel.CENTER);
             inputDesc.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 
@@ -80,7 +80,7 @@ public class PwFinder extends JFrame {
                 public void focusLost(FocusEvent e) {	// 포커스를 잃었을 때,
                     if (inputPw.getText().equals("")) {
                     	inputPw.setEchoChar((char)0);
-                    	inputPw.setText("비밀번호를 입력하세요");
+                    	inputPw.setText("현재 비밀번호를 입력하세요");
                     	inputPw.setFont(lostFont);
                     	inputPw.setForeground(Color.GRAY);
                     }else {

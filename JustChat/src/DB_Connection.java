@@ -364,10 +364,10 @@ public static String[] getFriendiInfo(String id) {
 			return new String[1];
 		}
 	}
-	public String[] sqlUserIdBySearching(String searchId) {
-		String userNum="SELECT count(*) FROM users where id like \'%"+searchId+"%\'";
+	public User[] sqlUserIdBySearching(String searchThing) {
+		String userNum="SELECT count(*) FROM user where id like \'%"+searchThing+"%\'" + "OR nick like \'%" + searchThing+"%\'";
 		
-		String users="SELECT id FROM users where id like \'%" + searchId + "%\'";
+		String users="SELECT id FROM users where id like \'%" + searchThing + "%\'" + "OR nick like \'%" + searchThing + "%\'";
 
 		try {
 			Statement stmt1 = con.createStatement();
@@ -378,7 +378,7 @@ public static String[] getFriendiInfo(String id) {
 				num = rs.getInt(1);
 			}
 			
-			String[] user_id = new String[num];
+			User[] findUsers = new User[num];
 
 			System.out.println(" search \n"+num);
 			
@@ -387,13 +387,27 @@ public static String[] getFriendiInfo(String id) {
 
 			while(rs.next()) {
 				
-				System.out.println(rs.getString(1));
-				user_id[i] = rs.getString(1);
+				findUsers[i].ip = rs.getString(1);
+				findUsers[i].port = rs.getInt(2);
+				findUsers[i].id = rs.getString(3);
+				findUsers[i].pw = rs.getString(4);
+				findUsers[i].name = rs.getString(5);
+				findUsers[i].nickName = rs.getString(6);
+				findUsers[i].email = rs.getString(7);
+				findUsers[i].birth = rs.getString(8);
+				findUsers[i].phone = rs.getString(9);
+				findUsers[i].address = rs.getString(10);
+				findUsers[i].word = rs.getString(11);
+				findUsers[i].state = rs.getString(12);
+				findUsers[i].outTime = rs.getString(13);
+
+				
+				
 				i++;
 				
 			}
 
-			return user_id;
+			return findUsers;
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return new String[1];
