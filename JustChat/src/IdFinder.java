@@ -12,7 +12,6 @@ public class IdFinder extends JFrame {
         new InputInfo();
     }
     
-    static String id;
     static Colors colors;
     
     static class InputInfo extends JFrame {
@@ -75,19 +74,19 @@ public class IdFinder extends JFrame {
 
                 @Override
                 public void focusLost(FocusEvent e) {	// 포커스를 잃었을 때,
-                    if (inputName.getText().equals("")) {
-                    	inputName.setText("이메일을 입력하세요");
-                    	inputName.setFont(lostFont);
-                    	inputName.setForeground(Color.GRAY);
+                    if (inputEmail.getText().equals("")) {
+                    	inputEmail.setText("이메일을 입력하세요");
+                    	inputEmail.setFont(lostFont);
+                    	inputEmail.setForeground(Color.GRAY);
                     }
                 }
 
                 @Override
                 public void focusGained(FocusEvent e) {	// 포커스를 얻었을 때,
-                    if (inputName.getText().equals("이메일을 입력하세요")) {
-                    	inputName.setText("");
-                    	inputName.setFont(gainFont);
-                    	inputName.setForeground(Color.BLACK);
+                    if (inputEmail.getText().equals("이메일을 입력하세요")) {
+                    	inputEmail.setText("");
+                    	inputEmail.setFont(gainFont);
+                    	inputEmail.setForeground(Color.BLACK);
                     }
                 }
             });
@@ -102,11 +101,12 @@ public class IdFinder extends JFrame {
             
             checkId.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                	
-                	String id = "tmdals";
-                	//실험용
-                    dispose();
+                public void actionPerformed(ActionEvent e) {                           	
+                    String name = inputName.getText();
+                    String email = inputEmail.getText();
+                    String id = Main.findId(name, email);
+                    
+                    //dispose();
                     //
                     
                     /* 실제 코드
@@ -129,12 +129,12 @@ public class IdFinder extends JFrame {
         			//System.out.println(checktext1);
 
         			if(!checktext1.equals("이름을 입력하세요") && !checktext2.equals("이메일을 입력하세요")) {
-        				if(checktext1.length() <3 || checktext2.length() <3) {
+        				if(checktext1.length() <1 || checktext2.length() <3) {
         					checkId.setColor(Color.white, Color.gray);
         					checkId.setEnabled(false);
         					inputPanel.repaint();
     	    			
-    	    			}else if(checktext1.length() >=3 && checktext2.length() >= 3) {
+    	    			}else if(checktext1.length() >=1 && checktext2.length() >= 3) {
     	    				checkId.setColor(colors.btn_back, colors.btn_text);
     	    				checkId.setEnabled(true);
     	    				inputPanel.repaint();

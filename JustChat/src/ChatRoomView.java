@@ -19,34 +19,34 @@ import java.awt.event.TextListener;
 import java.util.Objects;
 
 public class ChatRoomView extends JFrame {
-	
-	static String myId;
-	static String roomId;
-	
-	private Main mymain;
-	private Colors colors;
-	
-	private JPanel infoPanel = new JPanel();
-	private JPanel notionPanel = new JPanel();
-	private JPanel chatPanel = new JPanel();
-	private JPanel enterPanel = new JPanel();
-	
-	Button_Round loginButton = new Button_Round("·Î±×ÀÎ");
-	Button_Round registerButton = new Button_Round("È¸¿ø°¡ÀÔ");
+   
+   static String myId;
+   static String roomId;
+   
+   private Main mymain;
+   private Colors colors;
+   
+   private JPanel infoPanel = new JPanel();
+   private JPanel notionPanel = new JPanel();
+   private JPanel chatPanel = new JPanel();
+   private JPanel enterPanel = new JPanel();
+   
+   Button_Round loginButton = new Button_Round("·Î±×ÀÎ");
+   Button_Round registerButton = new Button_Round("È¸¿ø°¡ÀÔ");
     private CardLayout card;
 
     
-	void setMain(Main main) {
-		this.mymain = main;
-	}
-	
-	ChatRoomView(){
+   void setMain(Main main) {
+      this.mymain = main;
+   }
+   
+   ChatRoomView(){
         Container con = getContentPane();
 
         setLayout(card = new CardLayout());
         //setUndecorated(true);
         
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
 
         setSize(400, 700);
         
@@ -99,15 +99,22 @@ public class ChatRoomView extends JFrame {
         
         addChatMessage(this.roomId); // Ã¤ÆÃ ³»¿ë ºÒ·¯¿À±â
         //Ã¤ÆÃ ¸Þ½ÃÁö Ç¥Çö---------------------------------------------------------------
+        String id = "½Â¹Î";
         for(int i = 0; i < 15; i++) {
-	        
-			messages new_msg = new messages("½Â¹Î","¾îÂ¿","¤·¤·");
-			chatPanel.add(new_msg);
-			chatPanel.add(new JLabel(""));
-		}
+           
+         messages new_msg = new messages(id,"¾îÂ¿","19:27");
+         chatPanel.add(new_msg);
+         if(id.equals("ÇÑ½½")) {
+            id = "½Â¹Î";
+         }else {
+            id = "ÇÑ½½";
+         }
+         chatPanel.add(new JLabel(""));
+      }
         setVisible(true);
         chatScroll.setViewportView(chatPanel);
-        chatScroll.setBorder(new EmptyBorder(10,10,10,10));
+        chatScroll.setBorder(new EmptyBorder(0,0,0,0));
+        chatScroll.getVerticalScrollBar().setValue(chatScroll.getVerticalScrollBar().getMaximum());
 
         //Ã¤ÆÃ ¸Þ½ÃÁö Ç¥Çö-------------------------------------------------------------------
         
@@ -124,7 +131,7 @@ public class ChatRoomView extends JFrame {
         inputField.setText("");
         inputField.setFont(gainFont);
         inputField.setForeground(Color.BLACK);
-        inputField.setMargin(new Insets(10,10,10,10));
+        inputField.setMargin(new Insets(0,0,0,0));
         
         JPanel bottomPanel = new JPanel(new FlowLayout());
         Button_Round chatButton = new Button_Round("Àü¼Û");
@@ -133,28 +140,28 @@ public class ChatRoomView extends JFrame {
         
         enterPanel.add(inputField);
         enterPanel.add(bottomPanel);
-        enterPanel.setBorder(new EmptyBorder(10,10,10,10));
+        enterPanel.setBorder(new EmptyBorder(0,0,0,0));
 
         
         Timer t1=new Timer(100,new ActionListener(){
             public void actionPerformed(ActionEvent e)
                 {
-    			String checktext1 = inputField.getText();
-    			//System.out.println(checktext1);
+             String checktext1 = inputField.getText();
+             //System.out.println(checktext1);
 
-    			if(!checktext1.equals("½ÃÇè¿ë")) {
-    				if(checktext1.length() <1) {
-    					chatButton.setColor(colors.light_gray, Color.gray);
-    					chatButton.setEnabled(false);
-    					enterPanel.repaint();
-	    			
-	    			}else if(checktext1.length() >=1) {
-	    				chatButton.setColor(colors.background, colors.btn_text);
-	    				chatButton.setEnabled(true);
-	    				enterPanel.repaint();
-	
-	    			}
-    			}
+             if(!checktext1.equals("½ÃÇè¿ë")) {
+                if(checktext1.length() <1) {
+                   chatButton.setColor(colors.light_gray, Color.gray);
+                   chatButton.setEnabled(false);
+                   enterPanel.repaint();
+                
+                }else if(checktext1.length() >=1) {
+                   chatButton.setColor(colors.background, colors.btn_text);
+                   chatButton.setEnabled(true);
+                   enterPanel.repaint();
+   
+                }
+             }
                 }
                 });
                 t1.start();
@@ -171,67 +178,106 @@ public class ChatRoomView extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-	
-	public void addChatMessage(String roomID) {
-		
-	}
-	static class messages extends JPanel {
-		Colors colors;
-		
-		messages(String id, String msg, String time) {
-			
-			
-    		if(id.equals("½Â¹Î")) { //ÀÚ±â ¾ÆÀÌµðÀÏ ¶§
-    			setLayout(new FlowLayout(2)); //¿ì·Î Á¤·Ä
-    			setBackground(colors.chat_back);
-    			
-    			JLabel message = new JLabel();
-    			message.setText(msg);
-    			message.setBackground(colors.chat_me);
-    			message.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    			message.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
-    			message.setOpaque(true);
+   
+   public void addChatMessage(String roomID) {
+      
+   }
+   static class messages extends JPanel {
+      Colors colors;
+      
+      messages(String id, String msg, String time) {
+         
+          if(id.equals("½Â¹Î")) { //ÀÚ±â ¾ÆÀÌµðÀÏ ¶§
+             setLayout(new FlowLayout(2)); //¿ì·Î Á¤·Ä
+             setBackground(colors.chat_back);
+             this.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+             
+             Button_Round message = new Button_Round();
+             message.setColor(colors.chat_me, Color.black);
+             message.setShow(false);
+             message.setRound(20, 20);
+             message.setText(msg);
+             
+             message.setBackground(colors.chat_me);
+             message.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+             message.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+             message.setOpaque(true);
 
-    			JLabel timeLabel = new JLabel();
-    			timeLabel.setText(time);
-    			timeLabel.setBackground(colors.chat_back);
-    			timeLabel.setForeground(colors.chat_time);
-    			timeLabel.setOpaque(true);
-    			timeLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
+             JLabel timeLabel = new JLabel();
+             timeLabel.setText("\n"+time);
+             timeLabel.setBackground(colors.chat_back);
+             timeLabel.setForeground(colors.chat_time);
+             timeLabel.setOpaque(true);
+             timeLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
+             timeLabel.setVerticalAlignment(JLabel.BOTTOM);
 
-    			add(timeLabel);
-    			add(message);
-    		}else { //Å¸ÀÎÀÇ ¾ÆÀÌµðÀÏ ¶§
-    			setLayout(new FlowLayout(0)); //ÁÂ·Î Á¤·Ä
-    			setBackground(colors.chat_back);
-    			
-    			JLabel name = new JLabel();
-    			name.setText(id);
-    			name.setBackground(colors.chat_back);
-    			name.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
+             JPanel forTime = new JPanel();
+             forTime.setBackground(colors.transparent);
+             forTime.setLayout(new GridLayout(2,1));
+             forTime.add(new JLabel());
+             forTime.add(timeLabel);
+             add(forTime);
+             add(message);
+          }else { //Å¸ÀÎÀÇ ¾ÆÀÌµðÀÏ ¶§
+             setLayout(new FlowLayout(0)); //ÁÂ·Î Á¤·Ä
+             setBackground(colors.chat_back);
+             
+             JLabel name = new JLabel();
+             name.setText(id);
+             name.setBackground(colors.chat_back);
+             name.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 12));
 
-    			
-    			JLabel message = new JLabel();
-    			message.setText(msg);
-    			message.setBackground(colors.chat_other);
-    			message.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    			message.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
-    			message.setOpaque(true);
+             
+             Button_Round message = new Button_Round();
+             message.setColor(colors.chat_other, Color.black);
+             message.setShow(false);
+             message.setRound(20, 20);
+             message.setText(msg);             message.setText(msg);
+             message.setBackground(colors.chat_other);
+             message.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+             message.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
+             message.setOpaque(true);
 
-    			JLabel timeLabel = new JLabel();
-    			timeLabel.setText(time);
-    			timeLabel.setBackground(colors.chat_back);
-    			timeLabel.setForeground(colors.chat_time);
-    			timeLabel.setOpaque(true);
-    			timeLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
-    			
-    			add(name);
-    			add(message);    			
-    			add(timeLabel);
-    			
-    		}
-    		
+             JLabel timeLabel = new JLabel();
+             timeLabel.setText(time);
+             timeLabel.setBackground(colors.chat_back);
+             timeLabel.setForeground(colors.chat_time);
+             timeLabel.setOpaque(true);
+             timeLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
+             
+             JPanel forTime = new JPanel();
+             forTime.setBackground(colors.transparent);
+             forTime.setLayout(new GridLayout(2,1));
+             forTime.add(new JLabel());
+             forTime.add(timeLabel);
+             
+             JPanel forMessage = new JPanel();
+             forMessage.setLayout(new BorderLayout());
+             //forMessage.setAlignmentX(RIGHT_ALIGNMENT);
+             forMessage.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+             forMessage.setBackground(colors.chat_back);
+
+             JPanel forMessageT = new JPanel();
+             forMessageT.setLayout(new FlowLayout());
+             forMessageT.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+             forMessageT.setBackground(colors.transparent);
+             
+             JPanel forName = new JPanel();
+             forName.setLayout(new FlowLayout(0));
+             forName.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+             forName.setBackground(colors.transparent);
+             forName.add(name);
+             
+             forMessage.add(forName,BorderLayout.NORTH);
+             forMessage.add(forMessageT,BorderLayout.WEST);
+
+             forMessageT.add(message);
+             forMessageT.add(forTime);
+             
+             add(forMessage);             
+          }
+          
             
-    	}
+       }
     }
 }
