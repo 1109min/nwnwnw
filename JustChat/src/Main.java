@@ -16,11 +16,11 @@ public class Main{
     	Main main = new Main();
     	new DB_Connection();
 
-        main.loginView = new LoginWindow(); // 로그인창 보이기
-        main.loginView.setMain(main); // 로그인창에게 메인 클래스보내기
+        //main.loginView = new LoginWindow(); // 로그인창 보이기
+        //main.loginView.setMain(main); // 로그인창에게 메인 클래스보내기
     	
-        main.chatroomview = new ChatRoomView();
-        main.chatroomview.setMain(main);
+       // main.chatroomview = new ChatRoomView();
+        //main.chatroomview.setMain(main);
 
         main.mainboardView = new MainBoardView("승민");
         main.mainboardView.setMain(main);

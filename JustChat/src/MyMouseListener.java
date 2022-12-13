@@ -21,7 +21,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener{
 		public void mouseExited(MouseEvent e) {
 			JPanel p = (JPanel)e.getSource();
 			Color color = p.getBackground();
-			p.setBackground(color.brighter());			
+			p.setBackground(Color.white);			
 		}
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -43,7 +43,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener{
 		public void mouseReleased(MouseEvent e) {
 			JPanel p = (JPanel)e.getSource();
 			Color color = p.getBackground();
-			p.setBackground(color.brighter().brighter().brighter());		
+			p.setBackground(Color.white);		
 		}
 		
 		@Override
