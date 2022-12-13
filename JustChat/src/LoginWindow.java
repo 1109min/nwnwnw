@@ -36,22 +36,17 @@ public class LoginWindow extends JFrame {
         Container con = getContentPane();
 
         setLayout(card = new CardLayout());
-        //setUndecorated(true);
         Color btn_back = new Color(0x371D1E); //배경색 결정
         Color btn_text = new Color(0xffffff); //글자색 결정
         Color yellow = new Color(0xFAE100);
         
         setSize(360, 600);
-        //setLayout(new GridLayout(3,1));
         setLocationRelativeTo(null);
         con.setBackground(yellow);
         con.setLayout(new BoxLayout(con, BoxLayout.Y_AXIS));
         
         logoPanel = new JPanel(new BorderLayout());
         enterPanel = new JPanel(new GridLayout(0,1, 0, 1));
-        //enterPanel = new JPanel();
-        //enterPanel.setLayout(new BoxLayout(enterPanel, BoxLayout.Y_AXIS));
-
         enterPanel.setBorder(BorderFactory.createEmptyBorder(30,45,0,45));
         
         optionPanel = new JPanel(new BorderLayout());
@@ -64,13 +59,19 @@ public class LoginWindow extends JFrame {
          //상단 로고 이미지 추가
         Image logo = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/image/kakaotalkmain.png"))).getImage();
         Image logoIcon = logo.getScaledInstance(150,150,Image.SCALE_SMOOTH);
-        logoPanel.add(new JLabel(""),BorderLayout.NORTH);
+        
+        JLabel notionLabel = new JLabel();
+        notionLabel.setForeground(Color.red);
+        Font notionFont = new Font("맑은 고딕", Font.PLAIN, 11);
+        notionLabel.setFont(notionFont);
+        
+        logoPanel.add(notionLabel,BorderLayout.SOUTH);
         logoPanel.add(new JLabel(new ImageIcon(logoIcon)), BorderLayout.CENTER);
 
         JLabel inputText = new JLabel();
         JTextField idField = new JTextField(20);
         idField.setBorder(new EmptyBorder(10,10,10,10));
-        
+
         JPasswordField pwField = new JPasswordField(20);
         pwField.setBorder(new EmptyBorder(10,10,10,10));
 
@@ -78,7 +79,7 @@ public class LoginWindow extends JFrame {
         // 텍스트필드 힌트
         Font gainFont = new Font("맑은 고딕", Font.PLAIN, 14);
         Font lostFont = new Font("맑은 고딕", Font.PLAIN, 14);
-
+        
         idField.setText("아이디를 입력하세요");
         idField.setFont(lostFont);
         idField.setForeground(Color.GRAY);
@@ -112,7 +113,7 @@ public class LoginWindow extends JFrame {
     			String checktext1 = idField.getText();
     			char[] checktext2 = pwField.getPassword();
     			String checkPw = String.valueOf(checktext2);
-    			System.out.println(checktext1 + checkPw);
+    			//System.out.println(checktext1 + checkPw);
 
     			if(!checktext1.equals("아이디를 입력하세요") && !checkPw.equals("비밀번호를 입력하세요")) {
 	            	if(checktext1.length()<3 || checkPw.length()<3) {
@@ -163,12 +164,11 @@ public class LoginWindow extends JFrame {
             }
         });
         
-        //pwField.setEchoChar('*');
         
-        // 안내 텍스트 설정
-        inputText.setText("아이디와 비밀번호를 입력하세요");
-        inputText.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-        inputText.setHorizontalAlignment(JLabel.CENTER);
+//        // 안내 텍스트 설정
+//        inputText.setText("아이디와 비밀번호를 입력하세요");
+//        inputText.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+//        inputText.setHorizontalAlignment(JLabel.CENTER);
 
         enterPanel.add(idField);
         enterPanel.add(pwField);
@@ -184,33 +184,32 @@ public class LoginWindow extends JFrame {
                 String id = idField.getText();
                 String pw = "";
                 
-                //시험
-            	new ChatRoomView();
 
                 for(char pwd : pwField.getPassword()) {
                 	pw += pwd;
                 }
                 
-                
-                if(DB_Connection.checkLogin(id, pw) == 1) {
+                /* 로그인 서버 연결
+                if(DB_Connection.checkLogin(id, pw) == 1) { //로그인 성공했을 때
+                	notionLabel.setText("");
                 	myId = id;
                 	mymain.showMainBoardView(id);
                 	dispose();
                 }
-                else { //로그인 실패 이유들
-                	inputText.setText("아이디와 비밀번호가 맞지 않습니다!");
+                else { 오류코드가 1일 때 - 없는 아이디일 때
+                	notionLabel.setText("존재하지 않는 아이디입니다!");
+                }
+                else { 오류코드가 2일 때 - 아이디만 맞을 때
+                    notionLabel.setText("비밀번호가 틀렸습니다!");
+
                 }
                 
-            
+                */
+                logoPanel.repaint();
             }
         });
 
-        // ---------------------- 로그인 ----------------------------
-//        Button_Round loginButton = new Button_Round("로그인");
-//        loginButton.setColor(btn_back, btn_text);
-//        loginButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-//        loginButton.setForeground(Color.WHITE);
-        
+
         registerButton = new Button_Round("회원가입");
         registerButton.setColor(btn_back, btn_text);
         registerButton.setFont(new Font("맑은 고딕", Font.BOLD, 14));
@@ -237,7 +236,6 @@ public class LoginWindow extends JFrame {
         pwFinderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 new PwFinder();
             }
         });
@@ -251,8 +249,7 @@ public class LoginWindow extends JFrame {
         idFinderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                new PwFinder(); //ID 찾기
+                new IdFinder(); //ID 찾기
             }
         });
         
