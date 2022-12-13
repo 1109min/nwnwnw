@@ -9,15 +9,14 @@ import java.awt.event.FocusListener;
 
 public class PwFinder extends JFrame {
     PwFinder() {
-        new InputInfo();
+        new InputInfoPw();
     }
     
-    static String id;
     static String newPw = "";
     static Colors colors;
     
-    static class InputInfo extends JFrame {
-        InputInfo() {
+    static class InputInfoPw extends JFrame {
+        InputInfoPw() {
             setSize(400,600);
             setLayout(new GridLayout(2, 1));
             setBackground(colors.background);
@@ -80,7 +79,7 @@ public class PwFinder extends JFrame {
                 public void focusLost(FocusEvent e) {	// 포커스를 잃었을 때,
                     if (inputPw.getText().equals("")) {
                     	inputPw.setEchoChar((char)0);
-                    	inputPw.setText("비밀번호를 입력하세요");
+                    	inputPw.setText("현재 비밀번호를 입력하세요");
                     	inputPw.setFont(lostFont);
                     	inputPw.setForeground(Color.GRAY);
                     }else {
@@ -108,11 +107,21 @@ public class PwFinder extends JFrame {
             toChangePw.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                	
-                	//실험용
-                	id = inputId.getText();
-                    dispose();
-                    new ChangePw();
+                	String id = inputId.getText();
+                	String pw = "";
+                    
+                	for(char pwd : inputPw.getPassword()) {
+                    	pw += pwd;
+                    }     
+                    
+                    String checkPw = Main.findPw(id, pw);
+                    if(!checkPw.equals("continue"))
+                    	inputInfoDesc.setText(checkPw);
+                    else { 
+                    	 dispose();
+                    	 new ChangePw();
+                    }
+                    
                     //
                     
                     /* 실제 코드
@@ -211,11 +220,13 @@ public class PwFinder extends JFrame {
                 	for(char pwd : inputPw.getPassword()) {
                 		newPw += pwd;
                 	}
-                	if (DB_Connection.UpdatePw(id, newPw) == 0) {
-            			System.out.println("password is updated");
+                	String change = Main.changePw(newPw);
+                	if (change.equals("Password change success")) {
             			dispose();
             			new LoginWindow();                		
                 	}
+                	else
+                		inputPwDesc.setText(change);
 	                 // id에 아이디, newPw에 바꿀 비밀번호가 들어감
 	                 // 아이디를 통해 접근해서 비밀번호를 newPw로 바꿔주면 됩니다
                 }

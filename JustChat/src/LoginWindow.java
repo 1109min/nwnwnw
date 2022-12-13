@@ -13,6 +13,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
+import java.net.Socket;
 import java.util.Objects;
 
 public class LoginWindow extends JFrame {
@@ -26,10 +27,12 @@ public class LoginWindow extends JFrame {
 	Button_Round loginButton = new Button_Round("로그인");
 	Button_Round registerButton = new Button_Round("회원가입");
     private CardLayout card;
-
     
 	void setMain(Main main) {
 		this.mymain = main;
+	}
+	Main getMain() {
+		return this.mymain;
 	}
 	
 	LoginWindow(){
@@ -189,7 +192,18 @@ public class LoginWindow extends JFrame {
                 	pw += pwd;
                 }
                 
-                /* 로그인 서버 연결
+                // 로그인 서버 연결
+                Object user = mymain.logIn(id, pw);
+                if(user instanceof User) {
+                	notionLabel.setText("");
+                	mymain.showMainBoardView((User)user);
+                	dispose();
+                }
+                else {
+                	notionLabel.setText((String)user);
+                }
+                	
+                /*
                 if(DB_Connection.checkLogin(id, pw) == 1) { //로그인 성공했을 때
                 	notionLabel.setText("");
                 	myId = id;
@@ -202,8 +216,7 @@ public class LoginWindow extends JFrame {
                 else { 오류코드가 2일 때 - 아이디만 맞을 때
                     notionLabel.setText("비밀번호가 틀렸습니다!");
 
-                }
-                
+                }                      
                 */
                 logoPanel.repaint();
             }
