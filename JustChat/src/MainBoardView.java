@@ -22,9 +22,11 @@ import java.util.Objects;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -53,7 +55,8 @@ public class MainBoardView extends JFrame{
 	private JPanel BottomSidePanel = new JPanel();
 
 	private JPanel centerChatPanel = new JPanel();
-	
+	private JPanel centerChatPanel1 = new JPanel();
+
 	private JScrollPane leftListScroll = new JScrollPane();
 	private JScrollPane leftListScrollOff = new JScrollPane();
 	
@@ -96,11 +99,16 @@ public class MainBoardView extends JFrame{
         gbc.gridy = 0;
         mergeCenterPanel.add(leftListPanel,gbc);
                 
+        JPanel test = new JPanel(new GridLayout(2,1));
+        //test.add(centerChatScroll);
+        //test.add(rightListScroll);
+        
         gbc.weightx = 0.7;
         gbc.weighty = 1;
         gbc.gridx = 1;
         gbc.gridy = 0;
-        mergeCenterPanel.add(centerChatScroll,gbc);
+        mergeCenterPanel.add(centerChatPanel,gbc);
+        
         
         gbc.weightx = 0.15;
         gbc.weighty = 1;
@@ -122,38 +130,121 @@ public class MainBoardView extends JFrame{
 	
 	public void setTopSide() {
 		//서버에게 db요청해서 내 정보를 받아옴 - 객체로
-		topUserInfoPanel.setLayout(new GridLayout(1,3));
-		JPanel topUserInfoLeftPanel = new JPanel(new FlowLayout(0));
+		topUserInfoPanel.setLayout(new GridBagLayout());
+		topUserInfoPanel.setBackground(colors.chat_back);
 		
+		GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.BOTH;
+        
+        gbc.weightx = 2;
+        gbc.weighty = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+
+		JPanel topUserInfoLeftPanel = new JPanel(new FlowLayout(0));
+        topUserInfoPanel.add(topUserInfoLeftPanel, gbc);
+        topUserInfoLeftPanel.setBackground(colors.transparent);
+        
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.gridx = 1;
+        gbc.gridy = 0;		
+        
+		JPanel topUserInfoCenterPanel = new JPanel(new FlowLayout(2));
+		topUserInfoPanel.add(topUserInfoCenterPanel, gbc);
+		topUserInfoCenterPanel.setBackground(colors.transparent);
+
+		gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.gridx = 2;
+        gbc.gridy = 0;		
+        
+		JPanel topUserInfoRightPanel = new JPanel(new FlowLayout(2));
+		topUserInfoPanel.add(topUserInfoRightPanel ,gbc);
+		topUserInfoRightPanel.setBackground(colors.transparent);
+
 		Image logo = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/image/kakaotalkmain.png"))).getImage();
         Image logoIcon = logo.getScaledInstance(50,50,Image.SCALE_SMOOTH);
         
-        JPanel infoPanel = new JPanel(new GridLayout(2,1,5,5));
-        infoPanel.setBackground(colors.chat_back);
+        JPanel infoPanel = new JPanel(new GridLayout(1,0));
+        infoPanel.setBackground(colors.transparent);
         
+        JLabel nameDesc = new JLabel("이름: ");
+        nameDesc.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+        nameDesc.setForeground(Color.black); 
         JLabel userName = new JLabel("이승민");
+        userName.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        userName.setForeground(Color.black);
+        
+        JLabel nickDesc = new JLabel("닉네임: ");
+        nickDesc.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+        nickDesc.setForeground(Color.black);
+        JLabel userNick = new JLabel("수바코");
+        userNick.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        userNick.setForeground(Color.black);
+        
+        JLabel idDesc = new JLabel("아이디: ");
+        idDesc.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+        idDesc.setForeground(Color.black); 
         JLabel userId = new JLabel("tmdals");
+        userId.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        userId.setForeground(Color.black);
+
+        JLabel countDesc = new JLabel("로그인 횟수: ");
+        countDesc.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+        countDesc.setForeground(Color.black);
         JLabel loginCount = new JLabel("2");
+        loginCount.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        loginCount.setForeground(Color.black);
+        
+        JLabel introDesc = new JLabel("오늘의 한마디: ");
+        introDesc.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+        introDesc.setForeground(Color.black);
         JLabel userIntro = new JLabel("안녕하세요~");
+        userIntro.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        userIntro.setForeground(Color.black);
         
-        JPanel topinfo = new JPanel();
-        JPanel bottominfo = new JPanel();
-        
+        JPanel topinfo = new JPanel(new GridLayout(3,4));
+        topinfo.setBackground(colors.transparent);
+        topinfo.add(nameDesc);
         topinfo.add(userName);
+        topinfo.add(nickDesc);
+        topinfo.add(userNick);
+        topinfo.add(idDesc);
         topinfo.add(userId);
+        topinfo.add(countDesc);
         topinfo.add(loginCount);
+        topinfo.add(countDesc);
+        topinfo.add(loginCount);
+        topinfo.add(introDesc);
+        topinfo.add(userIntro);
         
-        bottominfo.add(userIntro);
+        JPanel bottominfo = new JPanel();
+        //bottominfo.add(userIntro);
                
         infoPanel.add(topinfo);
-        infoPanel.add(bottominfo);
+        //infoPanel.add(bottominfo);
         infoPanel.setBorder(new EmptyBorder(10,10,10,10));
         
         Font gainFont = new Font("맑은 고딕", Font.PLAIN, 13);
         Font lostFont = new Font("맑은 고딕", Font.PLAIN, 13);
-        
-		JPanel topUserInfoRightPanel = new JPanel(new FlowLayout(2));
 
+        //중간부분
+		Button_Round changeInfoButton = new Button_Round("정보변경");
+		changeInfoButton.setFont(gainFont);
+		changeInfoButton.setColor(colors.btn_back, colors.btn_text);
+		changeInfoButton.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        
+		changeInfoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	new modifyInfo();
+                 // id에 아이디, newPw에 바꿀 비밀번호가 들어감
+                 // 아이디를 통해 접근해서 비밀번호를 newPw로 바꿔주면 됩니다
+            }
+        });
+        
+        
         
         JTextField searchField = new JTextField(18);
         searchField.setBorder(new EmptyBorder(10,10,10,10));
@@ -193,6 +284,8 @@ public class MainBoardView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
             	String wantSearch = searchField.getText();
+            	rightListPanel.removeAll();
+            	rightListPanel1.removeAll();
             	setRightSide(wantSearch);
                  // id에 아이디, newPw에 바꿀 비밀번호가 들어감
                  // 아이디를 통해 접근해서 비밀번호를 newPw로 바꿔주면 됩니다
@@ -204,11 +297,19 @@ public class MainBoardView extends JFrame{
         
         topUserInfoLeftPanel.add(new JLabel(new ImageIcon(logoIcon)));
         topUserInfoLeftPanel.add(infoPanel);
+        
+        topUserInfoCenterPanel.add(changeInfoButton);
+        
 		topUserInfoRightPanel.add(searchField);
 		topUserInfoRightPanel.add(searchButton);
-		
-		topUserInfoPanel.add(topUserInfoLeftPanel);
-		topUserInfoPanel.add(topUserInfoRightPanel);
+		searchButton.setAlignmentX(CENTER_ALIGNMENT);
+		searchField.setAlignmentX(CENTER_ALIGNMENT);
+		searchButton.setAlignmentY(CENTER_ALIGNMENT);
+		searchField.setAlignmentY(CENTER_ALIGNMENT);
+
+		//topUserInfoPanel.add(topUserInfoLeftPanel);
+		//topUserInfoPanel.add(topUserInfoCenterPanel);
+		//topUserInfoPanel.add(topUserInfoRightPanel);
 
 	}
 	public void setLeftSide() {
@@ -352,7 +453,7 @@ public class MainBoardView extends JFrame{
 		rightListScroll.getViewport().setBackground(colors.chat_other);
 		rightListScroll.getVerticalScrollBar().setUnitIncrement(20);
 
-		JPanel chatPanel = new JPanel(new GridBagLayout());
+		JPanel searchPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 
         gbc.fill = GridBagConstraints.NONE;
@@ -360,12 +461,12 @@ public class MainBoardView extends JFrame{
         gbc.weighty = 0.5;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        Button_Round chatButton = new Button_Round();
-        chatButton.setColor(colors.btn_back, colors.btn_text);
-        chatButton.setRound(20, 20);
-        chatButton.setText("검색 결과");
-        chatButton.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-        chatPanel.add(chatButton,gbc);
+        Button_Round searchResultButton = new Button_Round();
+        searchResultButton.setColor(colors.btn_back, colors.btn_text);
+        searchResultButton.setRound(20, 20);
+        searchResultButton.setText("검색 결과");
+        searchResultButton.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+        searchPanel.add(searchResultButton,gbc);
 
         gbc.fill = GridBagConstraints.BOTH;
 
@@ -374,10 +475,10 @@ public class MainBoardView extends JFrame{
         gbc.gridx = 0;
         gbc.gridy = 1;
         
-        chatPanel.add(rightListScroll,gbc); 
+        searchPanel.add(rightListScroll,gbc); 
 
         rightListPanel.setLayout(new GridLayout(1,0));
-        rightListPanel.add(chatPanel);
+        rightListPanel.add(searchPanel);
 
         rightListPanel1.setLayout(new BoxLayout(rightListPanel1,BoxLayout.Y_AXIS));
 
@@ -387,7 +488,6 @@ public class MainBoardView extends JFrame{
         
         //채팅 메시지 표현---------------------------------------------------------------
         //여기서 wantSearch를 이용해 결과물 찾기 
-		
 		
 		for(int i = 0; i < 15; i++) {
 	        
@@ -399,10 +499,71 @@ public class MainBoardView extends JFrame{
 		}
         rightListPanel1.repaint();
   
-        
+        setVisible(true);
         rightListScroll.setViewportView(rightListPanel1);
         rightListScroll.setBorder(new EmptyBorder(0,0,10,0));
         		
+	}
+	
+	public void setCenterSide() {
+		centerChatScroll.getViewport().setBackground(colors.chat_other);
+		centerChatScroll.getVerticalScrollBar().setUnitIncrement(20);
+		centerChatScroll = new JScrollPane(centerChatPanel1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		//현재 아이디와 친구인 다른 사용자들의 리스트들을 띄움
+	
+		JPanel chatPanel = new JPanel(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 1;
+        gbc.weighty = 0.5;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        
+        Button_Round chatButton = new Button_Round();
+        chatButton.setColor(colors.btn_back, colors.btn_text);
+        chatButton.setRound(20, 20);
+        chatButton.setText("채팅방 목록");
+        chatButton.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+        chatPanel.add(chatButton,gbc);
+
+        gbc.fill = GridBagConstraints.BOTH;
+
+        gbc.weightx = 1;
+        gbc.weighty = 9;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        
+        chatPanel.add(centerChatScroll,gbc); 
+
+        centerChatPanel.setLayout(new GridLayout(1,0));
+		centerChatPanel.add(chatPanel);
+		
+		centerChatPanel1.setLayout(new BoxLayout(centerChatPanel1,BoxLayout.Y_AXIS));
+		centerChatPanel1.setBackground(colors.chat_other);
+		centerChatPanel1.setOpaque(true);
+		
+		
+		
+		
+		//채팅 룸들을 가져오다
+		for(int i = 0; i < 15; i++) {
+	        String[] users = new String[2];
+	        users[0] = "승민";
+	        users[1] = "한슬";
+			chatRooms oneRoom = new chatRooms("52352"+i,users,"하 힘들다 그냥");
+			if(i%2!=0) {
+				//oneRoom.setBackground(colors.light_gray);
+			}
+			oneRoom.addMouseListener(new chatListener());
+			centerChatPanel1.add(oneRoom);
+		}
+		centerChatPanel1.repaint();
+		
+        setVisible(true);
+        centerChatScroll.setViewportView(centerChatPanel1);
+        centerChatScroll.setBorder(new EmptyBorder(0,0,10,0));
 	}
 	
 	static class users extends JPanel {		
@@ -450,18 +611,52 @@ public class MainBoardView extends JFrame{
 			JPopupMenu popupMenu = new JPopupMenu();
 			JMenuItem detail = new JMenuItem("상세정보 보기");
 			detail.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+			
+			detail.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	System.out.println("상세정보");
+	            	new UserInfo(id); //나중에 객체로 넘기면 됨
+	            }
+	        });
 
+			JMenuItem plus = new JMenuItem("친구 등록하기");
+			plus.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+			plus.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	//new UserInfo(id);
+	                 // id에 아이디, newPw에 바꿀 비밀번호가 들어감
+	                 // 아이디를 통해 접근해서 비밀번호를 newPw로 바꿔주면 됩니다
+	            }
+	        });
+			
 			JMenuItem chat = new JMenuItem("1:1 채팅하기");
 			chat.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+			chat.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	new ChatRequest(id);	           
+	            }
+	        });
 
 			JMenuItem file = new JMenuItem("파일 전송하기");
 			file.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+			file.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	new UserInfo(id);
+	                 // id에 아이디, newPw에 바꿀 비밀번호가 들어감
+	                 // 아이디를 통해 접근해서 비밀번호를 newPw로 바꿔주면 됩니다
+	            }
+	        });
 
 
 			//JLabel detailsLabel = new JLabel("상세정보 보기");
 			//menus.add(detailsLabel);
 			
 		      popupMenu.add(detail);
+		      popupMenu.add(plus);
 		      popupMenu.add(chat);
 		      popupMenu.add(file);
 
@@ -471,48 +666,6 @@ public class MainBoardView extends JFrame{
 		
 		
 	}
-	
-	public void setCenterSide() {
-		centerChatScroll.getViewport().setBackground(colors.chat_other);
-		//현재 아이디와 친구인 다른 사용자들의 리스트들을 띄움
-		centerChatPanel.setLayout(new BoxLayout(centerChatPanel,BoxLayout.Y_AXIS));
-		centerChatPanel.setBackground(colors.chat_other);
-		centerChatPanel.setOpaque(true);
-
-		
-		
-		JPanel onlineList = new JPanel();
-		onlineList.setLayout(new BoxLayout(onlineList, BoxLayout.Y_AXIS));        
-		onlineList.setBackground(colors.chat_back);
-		
-		JPanel offlineList = new JPanel();
-		offlineList.setLayout(new BoxLayout(offlineList, BoxLayout.Y_AXIS));        
-		offlineList.setBackground(colors.chat_back);
-		
-		centerChatScroll = new JScrollPane(centerChatPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		centerChatScroll.getVerticalScrollBar().setUnitIncrement(20);
-        
-        //chatPanel.setMinimumSize(new Dimension(400,400));
-        
-		//채팅 룸들을 가져오다
-		for(int i = 0; i < 15; i++) {
-	        String[] users = new String[2];
-	        users[0] = "승민";
-	        users[1] = "한슬";
-			chatRooms oneRoom = new chatRooms("52352"+i,users,"하 힘들다 그냥");
-			if(i%2!=0) {
-				//oneRoom.setBackground(colors.light_gray);
-			}
-			oneRoom.addMouseListener(new chatListener());
-			centerChatPanel.add(oneRoom);
-		}
-        centerChatPanel.repaint();
-        
-        setVisible(true);
-        centerChatScroll.setViewportView(centerChatPanel);
-        centerChatScroll.setBorder(new EmptyBorder(10,0,10,0));
-	}
-	
 	static class chatRooms extends JPanel {		
 		Colors colors;
 		
@@ -624,5 +777,6 @@ public class MainBoardView extends JFrame{
 		}
 		
 	}
+	
 }
 

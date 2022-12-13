@@ -46,7 +46,7 @@ public class ChatRoomView extends JFrame {
         setLayout(card = new CardLayout());
         //setUndecorated(true);
         
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
 
         setSize(400, 700);
         
@@ -99,15 +99,22 @@ public class ChatRoomView extends JFrame {
         
         addChatMessage(this.roomId); // Ã¤ÆÃ ³»¿ë ºÒ·¯¿À±â
         //Ã¤ÆÃ ¸Þ½ÃÁö Ç¥Çö---------------------------------------------------------------
+        String id = "½Â¹Î";
         for(int i = 0; i < 15; i++) {
 	        
-			messages new_msg = new messages("½Â¹Î","¾îÂ¿","¤·¤·");
+			messages new_msg = new messages(id,"¾îÂ¿","19:27");
 			chatPanel.add(new_msg);
+			if(id.equals("ÇÑ½½")) {
+				id = "½Â¹Î";
+			}else {
+				id = "ÇÑ½½";
+			}
 			chatPanel.add(new JLabel(""));
 		}
         setVisible(true);
         chatScroll.setViewportView(chatPanel);
-        chatScroll.setBorder(new EmptyBorder(10,10,10,10));
+        chatScroll.setBorder(new EmptyBorder(0,0,0,0));
+        chatScroll.getVerticalScrollBar().setValue(chatScroll.getVerticalScrollBar().getMaximum());
 
         //Ã¤ÆÃ ¸Þ½ÃÁö Ç¥Çö-------------------------------------------------------------------
         
@@ -124,7 +131,7 @@ public class ChatRoomView extends JFrame {
         inputField.setText("");
         inputField.setFont(gainFont);
         inputField.setForeground(Color.BLACK);
-        inputField.setMargin(new Insets(10,10,10,10));
+        inputField.setMargin(new Insets(0,0,0,0));
         
         JPanel bottomPanel = new JPanel(new FlowLayout());
         Button_Round chatButton = new Button_Round("Àü¼Û");
@@ -133,7 +140,7 @@ public class ChatRoomView extends JFrame {
         
         enterPanel.add(inputField);
         enterPanel.add(bottomPanel);
-        enterPanel.setBorder(new EmptyBorder(10,10,10,10));
+        enterPanel.setBorder(new EmptyBorder(0,0,0,0));
 
         
         Timer t1=new Timer(100,new ActionListener(){
@@ -180,26 +187,36 @@ public class ChatRoomView extends JFrame {
 		
 		messages(String id, String msg, String time) {
 			
-			
     		if(id.equals("½Â¹Î")) { //ÀÚ±â ¾ÆÀÌµðÀÏ ¶§
     			setLayout(new FlowLayout(2)); //¿ì·Î Á¤·Ä
     			setBackground(colors.chat_back);
+    			this.setAlignmentY(Component.BOTTOM_ALIGNMENT);
     			
-    			JLabel message = new JLabel();
+    			Button_Round message = new Button_Round();
+    			message.setColor(colors.chat_me, Color.black);
+    			message.setShow(false);
+    			message.setRound(20, 20);
     			message.setText(msg);
+    			
     			message.setBackground(colors.chat_me);
     			message.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    			message.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+    			message.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
     			message.setOpaque(true);
 
     			JLabel timeLabel = new JLabel();
-    			timeLabel.setText(time);
+    			timeLabel.setText("\n"+time);
     			timeLabel.setBackground(colors.chat_back);
     			timeLabel.setForeground(colors.chat_time);
     			timeLabel.setOpaque(true);
-    			timeLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
+    			timeLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
+    			timeLabel.setVerticalAlignment(JLabel.BOTTOM);
 
-    			add(timeLabel);
+    			JPanel forTime = new JPanel();
+    			forTime.setBackground(colors.transparent);
+    			forTime.setLayout(new GridLayout(2,1));
+    			forTime.add(new JLabel());
+    			forTime.add(timeLabel);
+    			add(forTime);
     			add(message);
     		}else { //Å¸ÀÎÀÇ ¾ÆÀÌµðÀÏ ¶§
     			setLayout(new FlowLayout(0)); //ÁÂ·Î Á¤·Ä
@@ -208,14 +225,17 @@ public class ChatRoomView extends JFrame {
     			JLabel name = new JLabel();
     			name.setText(id);
     			name.setBackground(colors.chat_back);
-    			name.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
+    			name.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 12));
 
     			
-    			JLabel message = new JLabel();
-    			message.setText(msg);
+    			Button_Round message = new Button_Round();
+    			message.setColor(colors.chat_other, Color.black);
+    			message.setShow(false);
+    			message.setRound(20, 20);
+    			message.setText(msg);    			message.setText(msg);
     			message.setBackground(colors.chat_other);
     			message.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    			message.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+    			message.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 13));
     			message.setOpaque(true);
 
     			JLabel timeLabel = new JLabel();
@@ -223,12 +243,38 @@ public class ChatRoomView extends JFrame {
     			timeLabel.setBackground(colors.chat_back);
     			timeLabel.setForeground(colors.chat_time);
     			timeLabel.setOpaque(true);
-    			timeLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
+    			timeLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
     			
-    			add(name);
-    			add(message);    			
-    			add(timeLabel);
+    			JPanel forTime = new JPanel();
+    			forTime.setBackground(colors.transparent);
+    			forTime.setLayout(new GridLayout(2,1));
+    			forTime.add(new JLabel());
+    			forTime.add(timeLabel);
     			
+    			JPanel forMessage = new JPanel();
+    			forMessage.setLayout(new BorderLayout());
+    			//forMessage.setAlignmentX(RIGHT_ALIGNMENT);
+    			forMessage.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+    			forMessage.setBackground(colors.chat_back);
+
+    			JPanel forMessageT = new JPanel();
+    			forMessageT.setLayout(new FlowLayout());
+    			forMessageT.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    			forMessageT.setBackground(colors.transparent);
+    			
+    			JPanel forName = new JPanel();
+    			forName.setLayout(new FlowLayout(0));
+    			forName.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+    			forName.setBackground(colors.transparent);
+    			forName.add(name);
+    			
+    			forMessage.add(forName,BorderLayout.NORTH);
+    			forMessage.add(forMessageT,BorderLayout.WEST);
+
+    			forMessageT.add(message);
+    			forMessageT.add(forTime);
+    			
+    			add(forMessage);    			
     		}
     		
             

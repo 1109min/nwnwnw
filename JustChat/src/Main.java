@@ -5,7 +5,7 @@ public class Main{
     LoginWindow loginView;
     SignUpView signupView;
     ChatRoomView chatroomview;
-    
+    UserInfo userinfo;
     MainBoardView mainboardView;
     
     String id;
@@ -14,7 +14,6 @@ public class Main{
        
         // 메인클래스 실행
     	Main main = new Main();
-    	new DB_Connection();
 
         //main.loginView = new LoginWindow(); // 로그인창 보이기
         //main.loginView.setMain(main); // 로그인창에게 메인 클래스보내기
@@ -24,6 +23,7 @@ public class Main{
 
         main.mainboardView = new MainBoardView("승민");
         main.mainboardView.setMain(main);
+        main.userinfo = new UserInfo("dd");
     }
 
     

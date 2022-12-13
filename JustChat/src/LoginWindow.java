@@ -15,7 +15,7 @@ import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 import java.util.Objects;
 
-public class LoginWindow extends JFrame {
+public class LoginWindow extends JDialog {
 	
 	static String myId;
 	private Main mymain;

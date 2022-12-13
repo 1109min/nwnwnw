@@ -10,8 +10,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class UserInfo extends JFrame{
+public class modifyInfo extends JFrame{
 	
 	String ip;
 	int port;
@@ -29,16 +30,13 @@ public class UserInfo extends JFrame{
 	String count = "2";
 	Colors colors;
 	
-//	public UserInfo(String id) {
-//		this.id = id;
-//	}
-	
-	public UserInfo(String id) {
+	public modifyInfo() {
 		Container con = getContentPane();
         //setUndecorated(true);
         
         setLocationRelativeTo(null);
-        setSize(500, 300);
+        setVisible(true);
+        setSize(550, 300);
         
         con.setBackground(colors.light_gray);
         con.setLayout(new GridBagLayout());
@@ -57,7 +55,8 @@ public class UserInfo extends JFrame{
         JLabel nameDesc = new JLabel("ÀÌ¸§: ");
         nameDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         nameDesc.setForeground(Color.black); 
-        JLabel userName = new JLabel(this.name);
+        JTextField userName = new JTextField(13);
+        userName.setText(this.name);
         userName.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userName.setForeground(Color.black);
         JPanel nameP = new JPanel();
@@ -67,7 +66,8 @@ public class UserInfo extends JFrame{
         JLabel nickDesc = new JLabel("´Ð³×ÀÓ: ");
         nickDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         nickDesc.setForeground(Color.black);
-        JLabel userNick = new JLabel(this.nickName);
+        JTextField userNick = new JTextField(13);
+        userNick.setText(this.nickName);
         userNick.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userNick.setForeground(Color.black);
         JPanel nickP = new JPanel();
@@ -77,7 +77,8 @@ public class UserInfo extends JFrame{
         JLabel idDesc = new JLabel("¾ÆÀÌµð: ");
         idDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         idDesc.setForeground(Color.black); 
-        JLabel userId = new JLabel(id);
+        JTextField userId = new JTextField(13);
+        userId.setText(this.id);
         userId.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userId.setForeground(Color.black);
         JPanel idP = new JPanel();
@@ -87,7 +88,8 @@ public class UserInfo extends JFrame{
         JLabel countDesc = new JLabel("·Î±×ÀÎ È½¼ö: ");
         countDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         countDesc.setForeground(Color.black);
-        JLabel loginCount = new JLabel(this.count);
+        JTextField loginCount = new JTextField(13);
+        loginCount.setText(this.count);
         loginCount.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         loginCount.setForeground(Color.black);
         JPanel countP = new JPanel();
@@ -97,7 +99,8 @@ public class UserInfo extends JFrame{
         JLabel introDesc = new JLabel("¿À´ÃÀÇ ÇÑ¸¶µð: ");
         introDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         introDesc.setForeground(Color.black);
-        JLabel userIntro = new JLabel(this.word);
+        JTextField userIntro = new JTextField(13);
+        userIntro.setText(this.word);
         userIntro.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userIntro.setForeground(Color.black);
         JPanel introP = new JPanel();
@@ -107,7 +110,8 @@ public class UserInfo extends JFrame{
         JLabel emailDesc = new JLabel("Email: ");
         emailDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         emailDesc.setForeground(Color.black);
-        JLabel userEmail = new JLabel(this.email);
+        JTextField userEmail = new JTextField(13);
+        userEmail.setText(this.email);        
         userEmail.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userEmail.setForeground(Color.black);
         JPanel emailP = new JPanel();
@@ -117,7 +121,8 @@ public class UserInfo extends JFrame{
         JLabel birthDesc = new JLabel("»ýÀÏ: ");
         birthDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         birthDesc.setForeground(Color.black);
-        JLabel userBirth = new JLabel(this.birth);
+        JTextField userBirth = new JTextField(13);
+        userBirth.setText(this.birth);
         userBirth.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userBirth.setForeground(Color.black);
         JPanel birthP = new JPanel();
@@ -127,7 +132,8 @@ public class UserInfo extends JFrame{
         JLabel phoneDesc = new JLabel("ÀüÈ­¹øÈ£: ");
         phoneDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         phoneDesc.setForeground(Color.black);
-        JLabel userPhone = new JLabel(this.phone);
+        JTextField userPhone = new JTextField(13);
+        userPhone.setText(this.phone);
         userPhone.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userPhone.setForeground(Color.black);
         JPanel phoneP = new JPanel();
@@ -137,7 +143,8 @@ public class UserInfo extends JFrame{
         JLabel addressDesc = new JLabel("ÁÖ¼Ò: ");
         addressDesc.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
         addressDesc.setForeground(Color.black);
-        JLabel userAddress = new JLabel(this.address);
+        JTextField userAddress = new JTextField(13);
+        userAddress.setText(this.address);
         userAddress.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
         userAddress.setForeground(Color.black);
         JPanel addressP = new JPanel();
@@ -156,7 +163,13 @@ public class UserInfo extends JFrame{
         topinfo.add(addressP);
         topinfo.add(countP);
         topinfo.add(introP);
-
+        
+        Button_Round modifyButton = new Button_Round("Á¤º¸ º¯°æ");
+        modifyButton.setColor(colors.btn_back,colors.btn_text);
+        modifyButton.setRound(20, 20);
+        modifyButton.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 18));
+        
+        topinfo.add(modifyButton);
 
 //        topinfo.add(nameDesc);
 //        topinfo.add(userName);
@@ -187,7 +200,6 @@ public class UserInfo extends JFrame{
 		
         infoPanel.add(topinfo);
         add(infoPanel,gbc);
-        setVisible(true);
-
+		
 	}
 }
